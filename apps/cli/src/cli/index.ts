@@ -149,7 +149,7 @@ export const runCli = async () => {
         type: "checkbox",
         message: "Which packages would you like to enable?",
         choices: availablePackages
-          .filter((pkg) => pkg !== "envVariables") // dont prompt for env-vars
+          .filter((pkg) => !["envVariables", "tailwind"].includes(pkg)) // dont prompt for env-vars or tailwind
           .map((pkgName) => ({
             name: pkgName,
             checked: false,
