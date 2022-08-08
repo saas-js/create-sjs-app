@@ -1,0 +1,42 @@
+{
+  "name": "cli",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "bin": {
+    "create-sls-app": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=14.16"
+  },
+  "scripts": {
+    "typecheck": "tsc",
+    "build": "tsup src/index.ts --format esm --clean --sourcemap --minify --metafile",
+    "dev": "tsup src/index.ts --format esm --watch --clean --onSuccess \"node dist/index.js\"",
+    "start": "node dist/index.js",
+    "release": "standard-version",
+    "pub:next": "npm run build && npm publish --tag next",
+    "pub:release": "npm run build && npm publish"
+  },
+  "author": "nadilas <janosveres@me.com>",
+  "dependencies": {
+    "chalk": "5.0.1",
+    "commander": "^9.3.0",
+    "fs-extra": "^10.1.0",
+    "gradient-string": "^2.0.1",
+    "inquirer": "^9.0.0",
+    "ora": "6.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/gradient-string": "^1.1.2",
+    "@types/inquirer": "^8.2.1",
+    "@types/node": "^18.0.0",
+    "standard-version": "^9.5.0",
+    "tsup": "^6.1.2",
+    "type-fest": "^2.14.0",
+    "typescript": "^4.7.4"
+  }
+}
