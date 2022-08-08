@@ -4,6 +4,7 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
     cli: "./apps/cli/tsconfig.json",
+    addOn: "./packages/addon-saas-ui/tsconfig.json",
   },
   plugins: ["@typescript-eslint", "import"],
   extends: [
@@ -50,6 +51,7 @@ module.exports = {
       typescript: {
         alwaysTryTypes: true,
         project: "./apps/cli/tsconfig.json",
+        addOn: "./packages/addon-saas-ui/tsconfig.json",
       },
     },
   },

@@ -39,9 +39,8 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"],
-      "@sui/*": ["../../packages/addon-saas-ui/src/*"],
-      "~ct3/*": ["../../packages/create-t3-app/src/*"],
-      "~/*": ["../../packages/create-t3-app/src/*"]
+      "~ct3/*": ["../create-t3-app/src/*"],
+      "~/*": ["../create-t3-app/src/*"] // ct3 uses ~/* internally
     },
 
     /* OTHER OPTIONS */

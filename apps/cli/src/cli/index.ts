@@ -1,21 +1,12 @@
 import chalk from "chalk";
 import { Command } from "commander";
 import inquirer from "inquirer";
-import type { AvailablePackages } from "~ct3/installers/index.js";
 import { CREATE_T3_APP, DEFAULT_APP_NAME } from "~ct3/consts.js";
-import { availablePackages as t3AvailablePackages } from "~ct3/installers/index.js";
 import { getVersion } from "~ct3/utils/getT3Version.js";
 import { getUserPkgManager } from "~ct3/utils/getUserPkgManager.js";
 import { logger } from "~ct3/utils/logger.js";
 import { validateAppName } from "~ct3/utils/validateAppName.js";
-
-export const saasUiAvailablePackages = ["saasUI"] as const;
-type NoTailwind = Exclude<AvailablePackages, "tailwind">;
-type SaasUiAvailablePackages =
-  | typeof saasUiAvailablePackages[number]
-  | NoTailwind;
-
-const availablePackages = [...saasUiAvailablePackages, ...t3AvailablePackages];
+import { availablePackages, SaasUiAvailablePackages } from "./installers.js";
 
 interface CliFlags {
   noGit: boolean;
