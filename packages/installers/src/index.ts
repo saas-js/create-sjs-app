@@ -1,27 +1,27 @@
-import type { PackageManager } from "~/utils/getUserPkgManager.js";
+import type { PackageManager } from '~/utils/getUserPkgManager.js'
 import type {
   AvailablePackages,
   InstallerOptions as t3InstallerOptions,
-} from "~ct3/installers/index.js";
+} from '~ct3/installers/index.js'
 import {
   availablePackages as t3AvailablePackages,
   AvailablePackages as t3AvailablePackagesType,
-} from "~ct3/installers/index.js";
-import { buildPkgInstallerMap as t3BuildPkgInstallerMap } from "~ct3/installers/index.js";
-import { saasUiInstaller } from "@sui/installer.js";
+} from '~ct3/installers/index.js'
+import { buildPkgInstallerMap as t3BuildPkgInstallerMap } from '~ct3/installers/index.js'
+import { saasUiInstaller } from '@sui/installer.js'
 
-export const saasUiAvailablePackages = ["saasUI"] as const;
+export const saasUiAvailablePackages = ['saasUI'] as const
 
-type t3AvailablePackagesNoTailwind = Exclude<AvailablePackages, "tailwind">;
+type t3AvailablePackagesNoTailwind = Exclude<AvailablePackages, 'tailwind'>
 
 export type SaasUiAvailablePackages =
   | typeof saasUiAvailablePackages[number]
-  | t3AvailablePackagesNoTailwind;
+  | t3AvailablePackagesNoTailwind
 
 export const availablePackages = [
   ...saasUiAvailablePackages,
   ...t3AvailablePackages,
-];
+]
 
 /*
  * This maps the necessary packages to a version.
@@ -29,32 +29,32 @@ export const availablePackages = [
  */
 export const dependencyVersionMap = {
   // SaasUI
-  "@saas-ui/react": "^4.10.2",
-  "@chakra-ui/react": "^2.2.6",
-  "@emotion/react": "^11",
-  "@emotion/styled": "^11",
-  "framer-motion": "^6",
-} as const;
-export type AvailableDependencies = keyof typeof dependencyVersionMap;
+  '@saas-ui/react': '^1.3.1',
+  '@chakra-ui/react': '^2.2.6',
+  '@emotion/react': '^11',
+  '@emotion/styled': '^11',
+  'framer-motion': '^6',
+} as const
+export type AvailableDependencies = keyof typeof dependencyVersionMap
 
 export interface InstallerOptions {
-  projectDir: string;
-  pkgManager: PackageManager;
-  noInstall: boolean;
-  packages?: PkgInstallerMap;
-  projectName?: string;
+  projectDir: string
+  pkgManager: PackageManager
+  noInstall: boolean
+  packages?: PkgInstallerMap
+  projectName?: string
 }
 
 export type Installer =
   | ((opts: InstallerOptions) => void)
-  | ((opts: t3InstallerOptions) => void);
+  | ((opts: t3InstallerOptions) => void)
 
 export type PkgInstallerMap = {
   [pkg in SaasUiAvailablePackages]: {
-    inUse: boolean;
-    installer: Installer;
-  };
-};
+    inUse: boolean
+    installer: Installer
+  }
+}
 
 export const buildPkgInstallerMap = (
   packages: SaasUiAvailablePackages[]
@@ -63,13 +63,13 @@ export const buildPkgInstallerMap = (
   ...t3BuildPkgInstallerMap(
     packages
       .filter(
-        (pkg) => t3AvailablePackages.includes(pkg) // TODO get rid of this type error
+        (pkg) => t3AvailablePackages.includes(pkg as any) // TODO get rid of this type error
       )
       .map((pkg) => pkg as t3AvailablePackagesType)
   ),
   // add our own addon
   saasUI: {
-    inUse: packages.includes("saasUI"),
+    inUse: packages.includes('saasUI'),
     installer: saasUiInstaller,
   },
-});
+})
