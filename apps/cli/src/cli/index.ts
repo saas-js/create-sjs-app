@@ -1,12 +1,13 @@
 import chalk from "chalk";
 import { Command } from "commander";
 import inquirer from "inquirer";
-import { CREATE_T3_APP, DEFAULT_APP_NAME } from "~ct3/consts.js";
+import { logger } from "~ct3/utils/logger.js";
 import { getVersion } from "~ct3/utils/getT3Version.js";
 import { getUserPkgManager } from "~ct3/utils/getUserPkgManager.js";
-import { logger } from "~ct3/utils/logger.js";
 import { validateAppName } from "~ct3/utils/validateAppName.js";
 import { availablePackages, SaasUiAvailablePackages } from "./installers.js";
+export const DEFAULT_APP_NAME = "my-sls-app";
+export const CREATE_T3_APP = "create-sls-app";
 
 interface CliFlags {
   noGit: boolean;
@@ -38,7 +39,9 @@ export const runCli = async () => {
   // TODO: This doesn't return anything typesafe. Research other options?
   // Emulate from: https://github.com/Schniz/soundtype-commander
   program
-    .description("A CLI for creating web applications with the t3 stack")
+    .description(
+      "A CLI for creating web applications with the t3 stack with SaaS-UI"
+    )
     .argument(
       "[dir]",
       "The name of the application, as well as the name of the directory to create"
