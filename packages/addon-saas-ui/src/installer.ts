@@ -1,8 +1,11 @@
 // TODO Need to write our own because it doesn't accept the additional packages
-import { Installer } from "~ct3/installers/index.js";
-import { addPackageDependency } from "~ct3/utils/addPackageDependency";
+import { Installer, InstallerOptions } from "@installers/index.js";
+import { addPackageDependency } from "@installers/addPackageDependency.js";
 
-export const saasUiInstaller: Installer = ({ projectDir, packages }) => {
+export const saasUiInstaller: Installer = ({
+  projectDir,
+  packages,
+}: InstallerOptions) => {
   addPackageDependency({
     projectDir,
     dependencies: [
@@ -12,12 +15,13 @@ export const saasUiInstaller: Installer = ({ projectDir, packages }) => {
       "@emotion/styled",
       "framer-motion",
     ],
+    devMode: false,
   });
 
   const usingAuth = packages?.nextAuth.inUse;
   const usingPrisma = packages?.prisma.inUse;
 
-  // define template source and dest
+  // TODO define template source and dest
 
-  // fs.copySync(src, dst) template files to project
+  // TODO fs.copySync(src, dst) template files to project
 };

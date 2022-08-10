@@ -39,6 +39,7 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"],
+      "@installers/*": ["../../packages/installers/src/*"],
       "@sui/*": ["../../packages/addon-saas-ui/src/*"],
       "~ct3/*": ["../../packages/create-t3-app/src/*"],
       "~/*": ["../../packages/create-t3-app/src/*"]

@@ -5,7 +5,11 @@ import { logger } from "~ct3/utils/logger.js";
 import { getVersion } from "~ct3/utils/getT3Version.js";
 import { getUserPkgManager } from "~ct3/utils/getUserPkgManager.js";
 import { validateAppName } from "~ct3/utils/validateAppName.js";
-import { availablePackages, SaasUiAvailablePackages } from "./installers.js";
+import {
+  availablePackages,
+  SaasUiAvailablePackages,
+} from "@installers/index.js";
+
 export const DEFAULT_APP_NAME = "my-sls-app";
 export const CREATE_T3_APP = "create-sls-app";
 

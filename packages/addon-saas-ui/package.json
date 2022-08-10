@@ -1,0 +1,11 @@
+{
+  "name": "addon-saas-ui",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "type": "module",
+  "author": "nadilas <janosveres@me.com>",
+  "dependencies": {
+    "installers": "*"
+  }
+}

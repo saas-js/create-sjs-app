@@ -38,7 +38,7 @@
     /* MODULE PATH ALIAS*/
     "baseUrl": "./",
     "paths": {
-      "@installers/*": ["../installers/src/*"],
+      "@sui/*": ["../addon-saas-ui/src/*"],
       "~ct3/*": ["../create-t3-app/src/*"],
       "~/*": ["../create-t3-app/src/*"] // ct3 uses ~/* internally
     },

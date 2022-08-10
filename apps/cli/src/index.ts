@@ -8,7 +8,7 @@ import { renderTitle } from "~ct3/utils/renderTitle.js";
 import { parseNameAndPath } from "~ct3/utils/parseNameAndPath.js";
 import { installDependencies } from "~ct3/helpers/installDependencies.js";
 import { initializeGit } from "~ct3/helpers/initGit.js";
-import { buildPkgInstallerMap } from "./cli/installers.js";
+import { buildPkgInstallerMap } from "@installers/index.js";
 
 const main = async () => {
   renderTitle();
