@@ -16,7 +16,7 @@ const main = async () => {
   const {
     appName,
     packages,
-    flags: { noGit, noInstall },
+    flags: { noGit, noInstall, noMonorepo },
   } = await runCli();
 
   logger.info("you selected:", appName, packages);
@@ -33,10 +33,11 @@ const main = async () => {
     projectName: appDir,
     packages: usePackages,
     noInstall,
+    noMonoRepo,
   });
 
   if (!noInstall) {
-    // run install in root folder, good enough for monorepos
+    // run install in root folder, good enough for monorepos as well
     installDependencies(projectDir);
   }
 

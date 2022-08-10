@@ -12,6 +12,7 @@ export const CREATE_T3_APP = "create-sls-app";
 interface CliFlags {
   noGit: boolean;
   noInstall: boolean;
+  noMonorepo: boolean;
   default: boolean;
 }
 
@@ -27,6 +28,7 @@ const defaultOptions: CliResults = {
   flags: {
     noGit: false,
     noInstall: false,
+    noMonorepo: false,
     default: false,
   },
 };
@@ -54,6 +56,11 @@ export const runCli = async () => {
     .option(
       "--noInstall",
       "Explicitly tell the CLI to not run the package manager's install command",
+      false
+    )
+    .option(
+      "--noMonorepo",
+      "Explicitly tell the CLI to not create a monorepo",
       false
     )
     .option(
@@ -188,6 +195,22 @@ export const runCli = async () => {
           logger.info(
             `No worries. You can run '${pkgManager} install' later to install the dependencies.`
           );
+        }
+      }
+
+      if (!cliResults.flags.noMonorepo) {
+        const { monorepo } = await inquirer.prompt<{ monorepo: boolean }>({
+          name: "monorepo",
+          type: "confirm",
+          message: "Would you like to create a monorepo?",
+          default: true,
+        });
+
+        if (monorepo) {
+          logger.success("Alright. We'll create a monorepo for you!");
+        } else {
+          cliResults.flags.noMonorepo = true;
+          logger.info(`No worries. We will setup a simple project.`);
         }
       }
     }
